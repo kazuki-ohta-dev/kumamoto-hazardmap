@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="ハザードマップ">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="style.css">
+<title>くまもとハザードマップ（試作）</title>
+</head>
+<body>
+<div id="map"></div>
+
+<header class="topbar">
+  <div class="topline">
+    <div class="place"><span id="placeName">熊本県</span></div>
+    <span id="netBadge" class="badge online">オンライン</span>
+  </div>
+  <nav class="chips" id="layerChips" aria-label="表示する災害"></nav>
+</header>
+
+<div class="fabs">
+  <button id="btnLegend" class="fab" aria-label="凡例">
+    <svg viewBox="0 0 24 24"><rect x="4" y="5" width="5" height="4" rx="1"/><rect x="4" y="11" width="5" height="4" rx="1" opacity=".6"/><rect x="4" y="17" width="5" height="3" rx="1" opacity=".35"/><path d="M12 7h8M12 13h8M12 18.5h6" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+  <button id="btnLocate" class="fab" aria-label="現在地">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="7.5" fill="none" stroke-width="2"/></svg>
+  </button>
+  <button id="btnDownload" class="fab fab-primary" aria-label="オフライン保存">
+    <svg viewBox="0 0 24 24"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>保存</span>
+  </button>
+</div>
+
+<div id="legend" class="legend" hidden></div>
+
+<section id="sheet" class="sheet" hidden aria-live="polite">
+  <div class="grab"></div>
+  <button class="sheet-close" id="sheetClose" aria-label="閉じる">×</button>
+  <div id="sheetBody"></div>
+</section>
+
+<section id="dlPanel" class="panel" hidden>
+  <div class="panel-head">
+    <h2>オフライン保存</h2>
+    <button id="dlClose" class="textbtn">完了</button>
+  </div>
+  <p class="panel-lead">市町村ごとに地図とハザード情報を端末に保存します。保存した地域は電波がなくても表示・タップ判定できます。</p>
+  <div class="storage" id="storageInfo">保存容量を確認中…</div>
+  <div class="seg" role="radiogroup" aria-label="保存の細かさ">
+    <button data-q="15" class="on">標準<small>軽い・町名まで</small></button>
+    <button data-q="16">詳細<small>道路まで鮮明・約3倍</small></button>
+  </div>
+  <input id="dlSearch" type="search" placeholder="市町村名で絞り込み" autocomplete="off">
+  <ul id="dlList" class="dllist"></ul>
+  <p class="panel-note">iPhoneでは、Safariの共有ボタンから「ホーム画面に追加」して使うと、保存データが消えにくくなります。</p>
+</section>
+
+<div id="modal" class="modal" hidden>
+  <div class="modal-card">
+    <h2>試作版です</h2>
+    <p>表示している浸水深は「想定最大規模」の雨・津波・高潮が起きた場合の想定です。実際の避難の判断は、お住まいの市町村が出す情報に従ってください。</p>
+    <p class="small">地図：国土地理院 地理院タイル／ハザード情報：ハザードマップポータルサイト</p>
+    <button id="modalOk" class="primary">わかりました</button>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
