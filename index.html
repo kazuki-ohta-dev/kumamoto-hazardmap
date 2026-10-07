@@ -40,6 +40,12 @@
 
 <div id="legend" class="legend" hidden></div>
 
+<div id="depthSlider" class="dslider" hidden aria-label="浸水の深さで絞り込む">
+  <div class="ds-title">深さで<br>絞り込み</div>
+  <div class="ds-track" id="dsTrack"></div>
+</div>
+<div id="dsBanner" class="dsbanner" hidden></div>
+
 <section id="sheet" class="sheet" hidden aria-live="polite">
   <div class="grab"></div>
   <button class="sheet-close" id="sheetClose" aria-label="閉じる">×</button>
@@ -51,14 +57,25 @@
     <h2>オフライン保存</h2>
     <button id="dlClose" class="textbtn">完了</button>
   </div>
-  <p class="panel-lead">市町村ごとに地図とハザード情報を端末に保存します。保存した地域は電波がなくても表示・タップ判定できます。</p>
+  <p class="panel-lead">電波がなくても使えるように、地図とハザード情報を端末に保存します。</p>
   <div class="storage" id="storageInfo">保存容量を確認中…</div>
-  <div class="seg" role="radiogroup" aria-label="保存の細かさ">
-    <button data-q="15" class="on">標準<small>軽い・町名まで</small></button>
-    <button data-q="16">詳細<small>道路まで鮮明・約3倍</small></button>
-  </div>
-  <input id="dlSearch" type="search" placeholder="市町村名で絞り込み" autocomplete="off">
-  <ul id="dlList" class="dllist"></ul>
+
+  <h3 class="sec">県全体の概略地図</h3>
+  <ul id="prefList" class="dllist"></ul>
+
+  <h3 class="sec">保存した地点</h3>
+  <ul id="placeList" class="dllist"></ul>
+  <button id="addPlace" class="addbtn">＋ 地点を追加（自宅・職場など）</button>
+
+  <details id="muniDetails" class="muni">
+    <summary>市町村ごとに保存する</summary>
+    <div class="seg" role="radiogroup" aria-label="保存の細かさ">
+      <button data-q="15" class="on">標準<small>軽い・町名まで</small></button>
+      <button data-q="16">詳細<small>道路まで鮮明・約3倍</small></button>
+    </div>
+    <input id="dlSearch" type="search" placeholder="市町村名で絞り込み" autocomplete="off">
+    <ul id="dlList" class="dllist"></ul>
+  </details>
   <p class="panel-note">iPhoneでは、Safariの共有ボタンから「ホーム画面に追加」して使うと、保存データが消えにくくなります。</p>
 </section>
 

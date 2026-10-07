@@ -1,12 +1,12 @@
 /* Service Worker：アプリ本体はネットワーク優先（更新をすぐ反映）、地図タイルは保存済みならそれを返す */
-const SHELL = 'hm-shell-v1';
+const SHELL = 'hm-shell-v2';
 const TILES = 'hm-tiles-v1';
 const SHELL_FILES = [
   './', 'index.html', 'style.css', 'app.js', 'manifest.webmanifest',
   'vendor/leaflet/leaflet.js', 'vendor/leaflet/leaflet.css',
   'vendor/leaflet/images/layers.png', 'vendor/leaflet/images/layers-2x.png',
   'vendor/leaflet/images/marker-icon.png', 'vendor/leaflet/images/marker-icon-2x.png', 'vendor/leaflet/images/marker-shadow.png',
-  'data/kumamoto_municipalities.geojson',
+  'data/kumamoto_municipalities.geojson', 'data/shelters_kumamoto.json',
   'icons/icon-180.png', 'icons/icon-192.png', 'icons/icon-512.png',
 ];
 const TILE_HOSTS = ['cyberjapandata.gsi.go.jp', 'disaportaldata.gsi.go.jp'];

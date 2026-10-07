@@ -47,7 +47,7 @@ body.sheet-open .fabs{bottom:calc(var(--sheet-h,0px) + 12px)}
 
 /* sheet */
 .sheet{position:fixed;left:0;right:0;bottom:0;z-index:1100;background:#fff;border-radius:18px 18px 0 0;
-  box-shadow:0 -4px 20px rgba(20,30,50,.18);padding:8px 18px calc(var(--sb) + 16px);max-height:70vh;overflow:auto}
+  box-shadow:0 -4px 20px rgba(20,30,50,.18);padding:8px 18px calc(var(--sb) + 16px);max-height:58vh;overflow:auto}
 .grab{width:40px;height:5px;border-radius:3px;background:#d4d9e1;margin:0 auto 8px}
 .sheet-close{position:absolute;right:10px;top:8px;width:34px;height:34px;border-radius:50%;background:var(--soft);font-size:20px;line-height:1;color:var(--sub)}
 .res-place{color:var(--sub);font-size:13px;margin:2px 40px 6px 0}
@@ -101,3 +101,50 @@ body.sheet-open .fabs{bottom:calc(var(--sheet-h,0px) + 12px)}
 .toast{position:fixed;left:50%;transform:translateX(-50%);top:calc(var(--st) + 100px);z-index:1600;background:rgba(29,36,51,.92);color:#fff;
   padding:10px 16px;border-radius:12px;font-size:14px;max-width:88vw;text-align:center}
 .me-dot{width:16px;height:16px;border-radius:50%;background:var(--accent);border:3px solid #fff;box-shadow:0 0 0 2px rgba(10,102,216,.35)}
+
+/* ---- 浸水深スライダー ---- */
+.dslider{position:fixed;left:8px;top:50%;transform:translateY(-46%);z-index:1000;background:rgba(255,255,255,.96);border-radius:16px;
+  box-shadow:var(--shadow);padding:8px 4px 6px;width:64px;touch-action:none;user-select:none;-webkit-user-select:none}
+.ds-title{font-size:10px;line-height:1.25;text-align:center;color:var(--sub);font-weight:700;margin-bottom:4px}
+.ds-track{position:relative;display:flex;flex-direction:column}
+.ds-track::before{content:"";position:absolute;left:50%;top:14px;bottom:14px;width:4px;margin-left:-2px;border-radius:2px;
+  background:linear-gradient(#dc7adc,#ff9191 35%,#ffb7b7 55%,#ffd8c0 75%,#f7f5a9 90%,#dfe4ec)}
+.ds-stop{position:relative;height:38px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px}
+.ds-stop b{font-size:12.5px;line-height:1;background:rgba(255,255,255,.95);padding:2px 4px;border-radius:6px;position:relative}
+.ds-stop small{font-size:9px;color:var(--sub);line-height:1.1;background:rgba(255,255,255,.95);padding:0 2px;border-radius:4px;position:relative;margin-top:1px;white-space:nowrap}
+.ds-stop.on b{background:#d93025;color:#fff}
+.ds-stop.on.off b{background:var(--ink)}
+.ds-stop.on small{color:var(--ink);font-weight:700}
+.dsbanner{position:fixed;left:50%;transform:translateX(-50%);top:calc(var(--st) + 98px);z-index:1001;background:rgba(29,36,51,.92);color:#fff;
+  border-radius:12px;padding:8px 12px;font-size:12.5px;line-height:1.5;max-width:min(92vw,380px)}
+.dsbanner b{font-size:13.5px}
+.dsbanner .k{display:inline-flex;align-items:center;gap:4px;margin-right:10px;white-space:nowrap}
+.dsbanner .k i{width:12px;height:10px;border-radius:2px;display:inline-block}
+
+/* ---- 避難場所 ---- */
+.shel{margin-top:14px;border-top:1px solid var(--line);padding-top:10px}
+.shel h4{margin:0 0 6px;font-size:14px}
+.shel-row{display:flex;gap:10px;align-items:flex-start;padding:9px 4px;border-radius:10px;width:100%;text-align:left}
+.shel-row:active{background:var(--soft)}
+.shel-no{flex:none;width:24px;height:24px;border-radius:7px;background:#1e8e3e;color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center;margin-top:1px}
+.shel-main{flex:1;min-width:0}
+.shel-name{font-weight:700;font-size:15px}
+.shel-dist{font-size:13px;color:var(--ink);margin-top:1px;display:flex;align-items:center;gap:4px}
+.shel-dist svg{width:16px;height:16px;fill:#1e8e3e;flex:none}
+.shel-warn{font-size:12px;color:#b3261e;margin-top:3px;line-height:1.45}
+.shel-info{font-size:12px;color:var(--sub);margin-top:2px;line-height:1.45}
+.shel-pin{width:24px;height:24px;border-radius:7px;background:#1e8e3e;color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.shel-dot{width:12px;height:12px;border-radius:3px;background:#1e8e3e;border:1.5px solid #fff;box-shadow:0 0 2px rgba(0,0,0,.4)}
+.btn-line{display:block;width:100%;margin-top:12px;padding:12px;border-radius:12px;background:#e8f0fe;color:var(--accent);font-weight:700;font-size:14.5px}
+
+/* ---- 地点保存 ---- */
+.sec{font-size:13px;color:var(--sub);margin:16px 2px 2px}
+.addbtn{width:100%;margin-top:8px;padding:12px;border-radius:12px;border:1.5px dashed #b9c6d8;color:var(--accent);font-weight:700;font-size:15px}
+.muni{margin-top:18px;border-top:1px solid var(--line);padding-top:6px}
+.muni summary{font-size:14px;font-weight:700;padding:10px 2px;color:var(--sub);cursor:pointer}
+.namechips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.namechips button{padding:8px 14px;border-radius:999px;background:var(--soft);font-weight:700}
+.namechips button.on{background:var(--ink);color:#fff}
+.namein{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);font-size:16px;margin-bottom:6px}
+.place-label{background:#fff;border:0;border-radius:6px;padding:1px 6px;font-weight:700;font-size:11px;color:#0a66d8;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.place-label::before{display:none}
