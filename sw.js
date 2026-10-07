@@ -1,5 +1,5 @@
 /* Service Worker：アプリ本体はネットワーク優先（更新をすぐ反映）、地図タイルは保存済みならそれを返す */
-const SHELL = 'hm-shell-v2';
+const SHELL = 'hm-shell-v3';
 const TILES = 'hm-tiles-v1';
 const SHELL_FILES = [
   './', 'index.html', 'style.css', 'app.js', 'manifest.webmanifest',
@@ -42,7 +42,7 @@ async function tile(req) {
 async function shell(req) {
   const cache = await caches.open(SHELL);
   try {
-    const res = await fetch(req);
+    const res = await fetch(req.url, { cache: 'no-cache' });     // ブラウザの古い保存分を使わず、必ず最新を確認
     if (res.ok) cache.put(req, res.clone());
     return res;
   } catch {
